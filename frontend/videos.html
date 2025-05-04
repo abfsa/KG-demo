@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -31,3 +32,38 @@
   </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>我的视频列表</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="video-list-container">
+    <h1>我的视频列表</h1>
+    <ul id="video-list"></ul>
+    <div>
+      <a href="/upload">上传新视频</a>
+    </div>
+  </div>
+
+  <script>
+    fetch('/api/videos')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('video-list');
+        data.videos.forEach(videoId => {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `/video/${videoId}`;
+          link.innerText = `视频 ${videoId}`;
+          li.appendChild(link);
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
+>>>>>>> origin/main
