@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>首页 - 视频分析系统</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="home-container">
+        <h1>教学视频分析与图谱生成</h1>
+
+        <div class="home-actions">
+            <a href="/upload" class="home-button">上传新视频</a>
+        </div>
+
+        <h2>视频列表</h2>
+        <ul id="video-list"></ul>
+    </div>
+
+    <script>
+        fetch('/api/videos')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('video-list');
+                data.videos.forEach(videoId => {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = `/video/${videoId}`;
+
+                    // 创建封面图片元素
+                    const img = document.createElement('img');
+                    img.src = `/api/thumbnail/${videoId}`; // 确保后端提供这个路由
+                    img.alt = `封面 ${videoId}`;
+                    img.style.width = '100px'; // 设置图片宽度
+                    img.style.height = 'auto'; // 保持图片比例
+
+                    link.appendChild(img);
+                    link.innerText = ` ${videoId}`; // 显示视频名称
+                    li.appendChild(link);
+                    list.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>

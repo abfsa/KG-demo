@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频分析与展示系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧视频和字幕区域 -->
+        <div class="left-panel">
+            <div class="video-container">
+                <video id="main-video" controls>
+                    <source id="video-source" src="" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+            <div class="subtitle-container">
+                <div class="subtitle-viewer" id="subtitle-viewer"></div>
+            </div>
+        
+        </div>
+        
+        <!-- 右侧控制面板 -->
+        <div class="right-panel">
+            <div class="control-panel">
+                <button id="generate-report" class="report-button">生成分析报告</button>
+                <button id="show-outline" class="report-button">显示大纲</button>
+                <button id="save-tree" class="report-button">保存图谱修改</button>
+
+                <div class="tree-selector">
+                    <select id="tree-select">
+                        <option value="1">视频图谱</option>
+                        <option value="2">教案图谱</option>
+                    </select>
+                    <select id="view-mode">
+                        <option value="tree">窗口模式</option>
+                        <option value="graph">树状图模式</option>
+                        <option value="list">列表模式</option>
+                    </select>
+                </div>
+            </div>
+            <div class="tree-graph-container" id="tree-container">
+                <!-- 缩放控制按钮 -->
+                <div class="tree-controls">
+                    <button class="zoom-button" id="zoom-in">+</button>
+                    <button class="zoom-button" id="zoom-out">-</button>
+                    <button class="zoom-button" id="reset-zoom">↻</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 报告弹窗 -->
+    <div id="report-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>分析报告</h2>  <!-- 修改标题 -->
+                <div>
+                    <button id="download-pdf" class="download-button">下载JSON</button>
+                    <span class="close-button">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="json-report-content" id="report-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 教案弹窗 -->
+    <div id="outline-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>课堂知识汇总</h2>
+                <div>
+                    <button id="download-outline" class="download-button">下载教案</button>
+                    <span class="close-button">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="outline-content" id="outline-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入JS库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
+    <script src="/lib/pdfmake.min.js"></script>
+    <script src="/lib/vfs_fonts.js"></script>
+    
+    <!-- 引入模块 -->
+    <script src="/js/videoPlayer.js"></script>
+    <script src="/js/subtitleViewer.js"></script>
+    <script src="/js/treeViewer.js"></script>
+    <script src="/js/outlineViewer.js"></script>
+    <script src="/js/reportGenerator.js"></script>
+    <script src="/js/analysisImages.js"></script>
+    <script src="/js/iframeEmbedder.js"></script>
+
+    <!-- 页面初始化 -->
+    <script>
+        // 取得当前页面URL中的videoId
+        const videoId = window.location.pathname.split('/').pop();
+
+        // 设置视频播放地址
+        document.getElementById('video-source').src = `/data/user1/${videoId}/video.mp4`;
+        document.getElementById('main-video').load();
+
+        // 初始化播放器相关逻辑（如果需要控制播放器）
+        window.videoPlayer = {
+            seekTo: function (time) {
+                const video = document.getElementById('main-video');
+                if (video) {
+                    video.currentTime = time;
+                    video.play();
+                }
+            }
+        };
+
+        // 初始化模块，带上 videoId
+        new SubtitleViewer('subtitle-viewer', videoId);
+        new TreeViewer('tree-container', videoId);
+        new OutlineViewer('outline-modal', 'outline-content', videoId);
+        new ReportGenerator('report-modal', 'report-content', videoId);
+        new IframeEmbedder(videoId);
+
+        new AnalysisImages(videoId);  //静态图像渲染
+        fetch(`/api/images/${videoId}`)
+        .then(response => response.json())
+        .then(data => {
+            const gallery = document.getElementById('image-gallery');
+            
+            data.images.forEach(imageUrl => {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = '视频相关图片';
+                gallery.appendChild(img);
+            });
+            
+            if (data.images.length === 0) {
+                gallery.innerHTML = '<p>暂无相关图片</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error loading images:', error);
+            document.getElementById('image-gallery').innerHTML = '<p>图片加载失败</p>';
+        });
+    </script>
+</body>
+</html>
