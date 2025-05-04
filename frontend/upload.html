@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>上传与分析</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="upload-container">
+        <h1>文件上传与分析</h1>
+
+        <!-- 上传视频部分 -->
+        <div class="upload-section">
+            <h2>上传视频</h2>
+            <input type="file" id="video-upload" accept="video/mp4">
+            <input type="text" id="video-name" placeholder="输入视频名称">
+            <button id="upload-video-btn">上传视频</button>
+        </div>
+
+        <!-- 上传教案部分 -->
+        <div class="upload-section">
+            <h2>上传教案</h2>
+            <input type="file" id="outline-upload" accept=".md">
+            <button id="upload-outline-btn">上传教案</button>
+        </div>
+
+
+
+        <!-- 返回主页 -->
+        <div class="back-home">
+            <a href="/" class="home-link">返回主页</a>
+        </div>
+        
+        <div id="progress-container" class="progress-container">
+            <div id="upload-progress-bar" class="progress-bar"></div>
+        </div>
+        
+
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script src="./js/uploadPage.js"></script>
+</body>
+</html>
