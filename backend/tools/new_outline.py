@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from util import *
 
 prompt = """
@@ -20,6 +21,9 @@ prompt = """
 确保不改变知识图谱中的知识点名称和数量,并且生成的内容与原字幕的文本量差距不太大，尽可能生成更多的内容。
 """
 
+=======
+from .util import *
+>>>>>>> origin/main
 
 def chat(prompt, conversation_history):
     conversation_history.append({"role": "user", "content": prompt})
@@ -48,6 +52,7 @@ def generate_prompt(path):
     prompt2 =  """
     请根据知识图谱的结构，提取字幕中讲述的内容，将字幕中口语化的描述转换为书面语，注意去除字幕中出现的第一人称等口语化用词。
     按照以上任务，返回一个json格式的课程总结，格式如下：
+<<<<<<< HEAD
     {
         "课程名称": "",
         "章节一": [
@@ -59,6 +64,29 @@ def generate_prompt(path):
             {"知识点二": "内容"}
         ]
     }
+=======
+    ```json
+    {
+        "课程名称": "",
+        "章节": [
+            {
+                "章节名":"",
+                "知识点":[
+                    {"名称":"", "内容":""},
+                    {"名称":"", "内容":""}
+                ]
+            },
+            {
+                "章节名":"",
+                "知识点":[
+                    {"名称":"", "内容":""},
+                    {"名称":"", "内容":""}
+                ]
+            }
+        ]
+    }
+    ```
+>>>>>>> origin/main
     注意，你需要将字幕中的对应内容全部转化为书面语，而不是根据字幕内容仅生成一个简短的摘要。
     知识点一等替换成具体的知识点名称。
     确保不改变知识图谱中的知识点名称和数量,并且生成的内容与原字幕的文本量差距不太大，尽可能生成更多的内容。
@@ -66,16 +94,32 @@ def generate_prompt(path):
     return prompt1 + prompt2
 
 def generate_outline(path):
+<<<<<<< HEAD
     with open(os.path.join(path, 'tree1.json'), 'r', encoding='utf-8') as file:
         graph = file.readlines()
     with open(os.path.join(path, 'subtitles.srt'), 'r', encoding='utf-8') as file:
         srt = file.readlines()
+=======
+>>>>>>> origin/main
     conversation_history = [
         {"role": "system", "content": "你是一个教育专家"}
     ]
     prompt3 = f"""
+<<<<<<< HEAD
     生成的内容并没有完全覆盖字幕中讲述的所有细节。请按照字幕内容和你对课程的理解进行扩展，要求覆盖字幕的所有教学细节。
     """
     response1, conversation_history = chat(generate_prompt(path), conversation_history)
     response2,_ = chat(prompt3, conversation_history)
     return extract_json_from_string(response2)
+=======
+    生成的内容并没有完全覆盖字幕中讲述的所有细节。请按照字幕内容和你对课程的理解进行扩展，要求覆盖字幕的所有教学细节，重新返回一个json格式的分析结果。
+    """
+    response1, conversation_history = chat(generate_prompt(path), conversation_history)
+    print(response1)
+    response2,_ = chat(prompt3, conversation_history)
+    print(response2)
+    response = extract_json_from_string(response2)
+    with open(os.path.join(path, 'outline.json'), 'w', encoding='utf-8') as f:
+        json.dump(response, f, ensure_ascii=False, indent=4)
+    return 
+>>>>>>> origin/main

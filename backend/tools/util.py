@@ -3,7 +3,11 @@ import os
 from openai import OpenAI
 import re
 
+<<<<<<< HEAD
 api_key =  "your API key"
+=======
+api_key =  "sk-630e9863feb8434da9691cb3f98339f5"
+>>>>>>> origin/main
 base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 
 os.environ["OPENAI_API_KEY"]  =  api_key

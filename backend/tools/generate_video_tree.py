@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 from util import *
 # 生成教学视频图谱
 prompt = """
+=======
+from .util import *
+# 生成教学视频图谱
+
+def generate_video_tree(path):
+    # 打开文件并按行读取内容
+    with open(os.path.join(path, 'subtitles.srt'), 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+    sample = """
+>>>>>>> origin/main
 你是一名经验丰富的教育专家，以下是一段教学视频内音频转录得到的文字，请根据其中的教学内容提取重要概念、定义、模型、算法、例子等作为知识点，以及各个知识点讲述的时间顺序以及包含关系，归纳出一段详尽的JSON格式的四的树状知识图谱。
 要求生成的知识图谱尽可能详细，每十分钟的讲解需要生成10~15个知识节点
 对于每个节点（node），要求生成以下属性：
@@ -42,12 +53,15 @@ child: 节点的子节点，为一个以JSON对象为元素的列表。其中的
     ]
 }
 """
+<<<<<<< HEAD
 
 def generate_video_tree(path):
     # 打开文件并按行读取内容
     with open(os.path.join(path, 'subtitles.srt'), 'r', encoding='utf-8') as file:
         lines = file.readlines()
     sample = prompt
+=======
+>>>>>>> origin/main
     # 构建prompt
     prompt = [
         sample,

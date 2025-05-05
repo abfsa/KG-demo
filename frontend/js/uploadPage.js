@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 function uploadFileWithProgress(endpoint, fileInputId, successMessage) {
     const fileInput = document.getElementById(fileInputId);
     const file = fileInput.files[0];
@@ -60,6 +61,8 @@ document.getElementById('upload-outline-btn').addEventListener('click', function
     uploadFileWithProgress('/api/upload/outline', 'outline-upload', '教案上传成功');
 });
 =======
+=======
+>>>>>>> origin/main
 function uploadFileWithProgress(endpoint, fileInputId, successMessage) {
     const fileInput = document.getElementById(fileInputId);
     const file = fileInput.files[0];
@@ -119,5 +122,9 @@ document.getElementById('upload-video-btn').addEventListener('click', function (
 
 document.getElementById('upload-outline-btn').addEventListener('click', function () {
     uploadFileWithProgress('/api/upload/outline', 'outline-upload', '教案上传成功');
+<<<<<<< HEAD
+});
+>>>>>>> origin/main
+=======
 });
 >>>>>>> origin/main

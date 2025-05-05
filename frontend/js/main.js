@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // 初始化各模块
 document.addEventListener('DOMContentLoaded', () => {
     // 视频播放器
@@ -68,6 +69,8 @@ window.addEventListener('resize', () => {
         treeViewer.renderGraphView();
     }
 =======
+=======
+>>>>>>> origin/main
 // 初始化各模块
 document.addEventListener('DOMContentLoaded', () => {
     // 视频播放器
@@ -136,5 +139,8 @@ window.addEventListener('resize', () => {
     if (treeViewer && treeViewer.currentViewMode === 'graph') {
         treeViewer.renderGraphView();
     }
+<<<<<<< HEAD
+>>>>>>> origin/main
+=======
 >>>>>>> origin/main
 });

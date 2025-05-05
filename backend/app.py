@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from flask import Flask, send_from_directory, jsonify, request, send_file
 import os
 from werkzeug.utils import secure_filename
@@ -241,11 +242,18 @@ def get_analysis_image(video_id, image_type):
 if __name__ == '__main__':
 =======
 from flask import Flask, send_from_directory, jsonify, request, send_file
+=======
+from flask import Flask, send_from_directory, jsonify, request, send_file, abort
+>>>>>>> origin/main
 import os
 from werkzeug.utils import secure_filename
 import subprocess
 import re
 import sys
+<<<<<<< HEAD
+=======
+import json
+>>>>>>> origin/main
 
 app = Flask(__name__)
 
@@ -322,6 +330,7 @@ def tree_route(video_id, tree_id):
 
 @app.route('/api/report/<video_id>')
 def get_report(video_id):
+<<<<<<< HEAD
     filepath = os.path.join(DATA_DIR, USER_ID, video_id, 'report.md')
     return send_file(filepath, as_attachment=True, download_name='分析报告.md')
 
@@ -329,6 +338,25 @@ def get_report(video_id):
 def get_outline(video_id):
     filepath = os.path.join(DATA_DIR, USER_ID, video_id, 'outline.md')
     return send_file(filepath, as_attachment=True, download_name='教案.md')
+=======
+    filepath = os.path.join(DATA_DIR, USER_ID, video_id, 'report.json')
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            report_data = json.load(f)
+        return jsonify(report_data)
+    except FileNotFoundError:
+        abort(404, description="Report not found")
+
+@app.route('/api/outline/<video_id>')
+def get_outline(video_id):
+    filepath = os.path.join(DATA_DIR, USER_ID, video_id, 'outline.json')
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            outline_data = json.load(f)
+        return jsonify(outline_data)
+    except FileNotFoundError:
+        abort(404, description="outline not found")
+>>>>>>> origin/main
 
 @app.route('/upload')
 def upload_page():
@@ -451,7 +479,10 @@ def get_image(video_id, image_name):
     else:
         return jsonify({'error': 'Image not found'}), 404
 
+<<<<<<< HEAD
 # 在现有路由基础上添加以下内容
+=======
+>>>>>>> origin/main
 @app.route('/api/analysis_images/<video_id>')
 def get_analysis_images(video_id):
     """获取分析图片路径"""
@@ -478,6 +509,23 @@ def get_analysis_image(video_id, image_type):
         return send_file(img_path, mimetype='image/png')
     else:
         return jsonify({'error': 'Image not found'}), 404
+
+<<<<<<< HEAD
+if __name__ == '__main__':
+>>>>>>> origin/main
+=======
+@app.route('/api/html/<username>/<video_id>/<html_type>')
+def serve_html_file(username, video_id, html_type):
+    valid_types = ['timeline', 'logic']
+    if html_type not in valid_types:
+        return "Invalid request", 400
+    video_dir = os.path.join(DATA_DIR, USER_ID, video_id)
+    file_path = os.path.join(video_dir, f"{html_type}.html")
+    
+    try:
+        return send_file(file_path)
+    except FileNotFoundError:
+        return "Content not available", 404
 
 if __name__ == '__main__':
 >>>>>>> origin/main

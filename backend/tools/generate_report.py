@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from util import *
+=======
+from .util import *
+>>>>>>> origin/main
 from openai import OpenAI
 import os
 import json
@@ -200,7 +204,11 @@ def comparison_for_graph(path, sample):
     # 打开文件并按行读取内容
     with open(os.path.join(path, 'subtitles.srt'), 'r', encoding='utf-8') as file:
         srt = file.readlines()
+<<<<<<< HEAD
     if os.path.exists():
+=======
+    if os.path.exists(os.path.join(path, 'tree2.json')):
+>>>>>>> origin/main
         with open(os.path.join(path, 'tree2.json'), 'r', encoding='utf-8') as file:
             graph2 = file.readlines()
     else:
@@ -240,5 +248,9 @@ def generate_report(path):
     }
 
     with open(os.path.join(path, 'report.json'), 'w', encoding='utf-8') as f:
+<<<<<<< HEAD
         f.write(response)
+=======
+        json.dump(response, f, ensure_ascii=False, indent=4)
+>>>>>>> origin/main
     return

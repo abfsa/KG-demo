@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 class TreeViewer {
     constructor(containerId, videoId) {
         this.container = document.getElementById(containerId);
@@ -542,6 +543,8 @@ class TreeViewer {
 }
 
 =======
+=======
+>>>>>>> origin/main
 class TreeViewer {
     constructor(containerId, videoId) {
         this.container = document.getElementById(containerId);
@@ -1082,6 +1085,10 @@ class TreeViewer {
             </div>
         `;
     }
+<<<<<<< HEAD
 }
 
+>>>>>>> origin/main
+=======
+}
 >>>>>>> origin/main

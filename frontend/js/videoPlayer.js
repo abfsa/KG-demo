@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 class VideoPlayer {
     constructor(videoId) {
         this.video = document.getElementById(videoId);
@@ -34,6 +35,8 @@ class VideoPlayer {
         this.video.currentTime = time;
     }
 =======
+=======
+>>>>>>> origin/main
 class VideoPlayer {
     constructor(videoId) {
         this.video = document.getElementById(videoId);
@@ -68,5 +71,8 @@ class VideoPlayer {
     seekTo(time) {
         this.video.currentTime = time;
     }
+<<<<<<< HEAD
+>>>>>>> origin/main
+=======
 >>>>>>> origin/main
 }

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 class SubtitleViewer {
     constructor(containerId, videoId) {
         this.container = document.getElementById(containerId);
@@ -147,6 +148,9 @@ class SubtitleViewer {
         this.currentSubtitleIndex = foundIndex;
     }
 =======
+=======
+
+>>>>>>> origin/main
 class SubtitleViewer {
     constructor(containerId, videoId) {
         this.container = document.getElementById(containerId);
@@ -294,5 +298,8 @@ class SubtitleViewer {
         
         this.currentSubtitleIndex = foundIndex;
     }
+<<<<<<< HEAD
+>>>>>>> origin/main
+=======
 >>>>>>> origin/main
 }

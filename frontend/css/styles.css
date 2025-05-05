@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .container {
     display: grid;
     grid-template-columns: 45% 55%;  /* 左右比例 */
@@ -773,6 +774,8 @@ a.home-link:hover {
     border: 1px solid #ddd;
     border-radius: 4px;
 =======
+=======
+>>>>>>> origin/main
 .container {
     display: grid;
     grid-template-columns: 45% 55%;  /* 左右比例 */
@@ -1546,5 +1549,245 @@ a.home-link:hover {
     margin: 10px auto 0;
     border: 1px solid #ddd;
     border-radius: 4px;
+<<<<<<< HEAD
 >>>>>>> origin/main
 }
+=======
+}
+
+/* 自定义报告样式 */
+.custom-report {
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.custom-report h1 {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.custom-report .evaluation {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.custom-report .details {
+    padding: 10px;
+    border-left: 3px solid #3498db;
+}
+
+/* 基础样式 */
+.custom-report {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 动态章节样式 */
+.report-section {
+    margin: 25px 0;
+    padding-top: 15px;
+    border-top: 1px dashed #ddd;
+}
+
+.section-title {
+    color: #2c3e50;
+    font-size: 1.25em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.section-title::before {
+    content: "▍";
+    color: #3498db;
+    margin-right: 8px;
+}
+
+.section-items {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* 卡片样式（适用于字典项） */
+.item-card {
+    background: #f9f9f9;
+    border-radius: 6px;
+    padding: 12px 15px;
+    border-left: 3px solid #3498db;
+    transition: transform 0.2s;
+}
+
+.item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.item-card h3 {
+    margin: 0 0 8px 0;
+    color: #e74c3c;
+    font-size: 1.1em;
+}
+
+/* 简单字段样式（非数组值） */
+.simple-field {
+    margin: 20px 0;
+}
+
+.field-title {
+    font-size: 1.2em;
+    color: #16a085;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .section-items {
+        grid-template-columns: 1fr;
+    }
+    
+    .item-card {
+        padding: 10px;
+    }
+}
+
+.section-title {
+    cursor: pointer;
+    position: relative;
+    padding-left: 20px;
+}
+
+.section-title::before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    transition: transform 0.2s;
+}
+
+.section-title.collapsed::before {
+    content: "▼";
+}
+
+.section-content {
+    padding-left: 20px;
+    border-left: 2px solid #eee;
+}
+
+/* 新增模块容器样式 */
+.timeline-container, .logic-container {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* 模块标题样式 */
+.module-title {
+    padding: 10px 15px;
+    margin: 0;
+    background: #f5f7fa;
+    border-bottom: 1px solid #e1e4e8;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+/* iframe容器样式 */
+.timeline-container, .logic-container {
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    overflow: visible; /* 允许内容溢出显示 */
+}
+
+.module-title {
+    padding: 15px;
+    margin: 0;
+    font-size: 1.2em;
+    color: #2c3e50;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eaecef;
+}
+
+.iframe-wrapper {
+    padding: 15px;
+    min-height: 400px; /* 最小高度保障 */
+}
+
+.content-iframe {
+    width: 100%;
+    height: auto; /* 高度由JS动态控制 */
+    min-height: 400px;
+    border: none;
+    display: block;
+    background: white;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .iframe-wrapper {
+        padding: 10px;
+    }
+    
+    .content-iframe {
+        min-height: 300px;
+    }
+}
+
+/* 调整字幕容器底部间距 */
+.subtitle-container {
+    margin-bottom: 10px; /* 原值可能是20px或更大，减小这个值 */
+    padding-bottom: 5px; /* 如果有padding也适当减小 */
+}
+
+/* 调整时间轴容器顶部间距 */
+.timeline-container {
+    margin-top: 5px !important; /* 覆盖任何现有样式 */
+    padding-top: 0 !important;
+}
+
+/* 确保知识点覆盖容器也有紧凑间距 */
+.coverage-container {
+    margin-top: 5px;
+}
+
+/* 知识点覆盖容器 */
+.coverage-container {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    background: white; /* 整个容器背景为白色 */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 图片容器 */
+.coverage-container .image-wrapper {
+    width: 100%;
+    overflow: hidden; /* 隐藏溢出的部分 */
+    background: white; /* 确保背景为白色 */
+    display: flex; /* 使用 Flexbox 居中 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    min-height: 200px; /* 设置最小高度，避免容器太小 */
+    border: 1px solid #eee; /* 可选：边框 */
+}
+
+/* 图片样式 */
+.coverage-container .coverage-image {
+    max-width: 100%; /* 图片最大宽度不超过容器 */
+    max-height: 100%; /* 图片最大高度不超过容器 */
+    object-fit: contain; /* 保持比例，填充容器 */
+    display: block; /* 避免底部间隙 */
+    margin: 0 auto; /* 水平居中（备用方案） */
+}
+
+>>>>>>> origin/main
